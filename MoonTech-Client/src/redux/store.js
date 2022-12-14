@@ -1,7 +1,8 @@
-import { createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "@redux-devtools/extension";
 import rootReducer from "./reducers/rootReducer";
+import logger from "redux-logger";
 
-const store = createStore(rootReducer, composeWithDevTools());
-
+// composeWithDevTools
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(logger)));
 export default store;
