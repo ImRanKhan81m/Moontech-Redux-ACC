@@ -17,17 +17,20 @@ const productReducer = (state = initialState, action) => {
     (product) => product._id === action.payload._id
   );
 
+  // ***======================Product Loaded=====================***
   switch (action.type) {
     case LOAD_PRODUCT:
       return {
         ...state,
         products: action.payload,
       }
+    // ***======================Product ADD and REMOVE=====================***
     case ADD_PRODUCT:
       return {
         ...state,
         products: [...state.products, action.payload],
       };
+
     case REMOVE_PRODUCT:
       return {
         ...state,
@@ -35,6 +38,8 @@ const productReducer = (state = initialState, action) => {
           (product) => product._id !== action.payload
         ),
       };
+
+    // ***======================Cart ADD and REMOVE=========================== ***
     case ADD_TO_CART:
       if (selectedProduct) {
         const newCart = state.cart.filter(
@@ -71,6 +76,7 @@ const productReducer = (state = initialState, action) => {
         ),
       };
 
+    // *** ======================Product Loaded=========================== ***
     case PRODUCT_LOADED:
       return {
         ...state,
